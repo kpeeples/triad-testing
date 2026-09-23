@@ -21,9 +21,3 @@
         name: httpd
         state: started
         enabled: yes
-
-    - name: Dump the welcome_msg variable into index.html
-      ansible.builtin.copy:
-        content: "<html><body><h1>{{ welcome_msg }}</h1></body></html>"
-        dest: /var/www/html/index.html
-        mode: '0644'
