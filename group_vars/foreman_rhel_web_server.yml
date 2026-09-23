@@ -1,2 +1,2 @@
 ---
-welcome_message: "Hello from the default Ansible playbook WITH THE VARIABLE OVERRIDE!"
+welcome_message: "Hello from the default Ansible playbook THE VARIABLE OVERRIDE!"
