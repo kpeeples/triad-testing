@@ -1,6 +1,6 @@
 ---
 - name: Verify Apache and dump welcome variable on RHEL 7
-  hosts: foreman_rhel_web_servers
+  hosts: foreman_rhel_web_server
   become: yes
   vars:
     # Default value if GitHub group_vars doesn't provide one
