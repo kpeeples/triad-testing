@@ -1,25 +1,29 @@
 ---
-- name: Deploy and configure Apache Web Server
-  hosts: foreman_rhel_web_server
+- name: Verify Apache and dump welcome variable on RHEL 7
+  hosts: foreman_rhel_web_servers
   become: yes
   vars:
-    # This default value will be used unless overridden by your group_vars
-    welcome_message: "Hello from the default Ansible playbook!"
+    # Default value if GitHub group_vars doesn't provide one
+    welcome_msg: "Default playbook welcome message"
 
   tasks:
-    - name: Install Apache (httpd)
-      ansible.builtin.dnf:
+    - name: Verify Apache (httpd) is installed
+      ansible.builtin.yum:
         name: httpd
         state: present
 
-    - name: Ensure Apache is running and enabled on boot
+    - name: Dump the welcome_msg variable to the AAP job log
+      ansible.builtin.debug:
+        msg: "The variable pulled from GitHub is: {{ welcome_msg }}"
+
+    - name: Ensure Apache is running
       ansible.builtin.service:
         name: httpd
         state: started
         enabled: yes
 
-    - name: Deploy a custom index.html
+    - name: Dump the welcome_msg variable into index.html
       ansible.builtin.copy:
-        content: "<html><body><h1>{{ welcome_message }}</h1></body></html>"
+        content: "<html><body><h1>{{ welcome_msg }}</h1></body></html>"
         dest: /var/www/html/index.html
         mode: '0644'
