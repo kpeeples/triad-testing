@@ -1,6 +1,6 @@
 ---
 - name: Deploy and configure Apache Web Server
-  hosts: all
+  hosts: rhel-web-server
   become: yes
   vars:
     # This default value will be used unless overridden by your group_vars
