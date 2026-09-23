@@ -1,4 +1,4 @@
 ---
 plugin: redhat.satellite.foreman
-validate_certs: yes
+validate_certs: no
 # AAP will provide the server_url, username, and password automatically
