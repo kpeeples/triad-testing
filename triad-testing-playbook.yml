@@ -25,3 +25,12 @@
     - name: Reveal the true group names
       ansible.builtin.debug:
         msg: "Ansible sees this host in these groups: {{ group_names }}"
+
+    - name: Get list of collections
+      ansible.builtin.command: ansible-galaxy collection list
+      register: galaxy_list
+      changed_when: false
+
+    - name: Print loaded collections
+      ansible.builtin.debug:
+        var: galaxy_list.stdout_lines
