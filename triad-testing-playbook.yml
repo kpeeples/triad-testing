@@ -1,1 +1,25 @@
 ---
+- name: Deploy and configure Apache Web Server
+  hosts: all
+  become: yes
+  vars:
+    # This default value will be used unless overridden by your group_vars
+    welcome_message: "Hello from the default Ansible playbook!"
+
+  tasks:
+    - name: Install Apache (httpd)
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: Ensure Apache is running and enabled on boot
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Deploy a custom index.html
+      ansible.builtin.copy:
+        content: "<html><body><h1>{{ welcome_message }}</h1></body></html>"
+        dest: /var/www/html/index.html
+        mode: '0644'
