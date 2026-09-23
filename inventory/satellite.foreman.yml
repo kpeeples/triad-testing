@@ -1,4 +1,6 @@
 ---
 plugin: redhat.satellite.foreman
+server_url: "{{ lookup('env', 'FOREMAN_SERVER_URL') }}"
+user: "{{ lookup('env', 'FOREMAN_USERNAME') }}"
+password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
 validate_certs: no
-# AAP will provide the server_url, username, and password automatically
