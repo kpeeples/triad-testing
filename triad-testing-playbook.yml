@@ -4,7 +4,7 @@
   become: yes
   vars:
     # Default value if GitHub group_vars doesn't provide one
-    welcome_msg: "Default playbook welcome message"
+    # welcome_msg: "Default playbook welcome message"
 
   tasks:
     - name: Verify Apache (httpd) is installed
@@ -14,7 +14,7 @@
 
     - name: Dump the welcome_msg variable to the AAP job log
       ansible.builtin.debug:
-        msg: "The variable pulled from GitHub is: {{ welcome_msg }}"
+        msg: "The variable is: {{ welcome_msg | default('Fallback message here') }}"
 
     - name: Ensure Apache is running
       ansible.builtin.service:
