@@ -21,3 +21,7 @@
         name: httpd
         state: started
         enabled: yes
+
+    - name: Reveal the true group names
+      ansible.builtin.debug:
+        msg: "Ansible sees this host in these groups: {{ group_names }}"
